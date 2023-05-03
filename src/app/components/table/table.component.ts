@@ -16,57 +16,44 @@ import {OnlyFansTable} from "../../shared/interfaces";
 
 export class TableStickyComplexFlexExample implements OnInit {
   displayedColumns: string[] = [];
+  displayedHeader: string[] = [];
+  displayedFooter: string[] = [];
 
-  public ELEMENT_DATA : OnlyFansTable[] = [] ;
-  public  HUI_DATA: OnlyFansTable[] = [
-    {
-      id: 6,
-    clientSurname: "Petrovna",
-    clientName: "Elena",
-    operatorName: "iwwmz",
-    operatorSurname: "Kakdela",
-    tableDataSet: [
-      {id: 16,
-        day:"3",
-        date: "2023-01-03",
-        data: 55.0,
-        dataType: "OP",
-        tableID: 6},
-      {id: 17,
-        day: "6",
-        date: "2023-01-06",
-        data: 33.0,
-        dataType: "OP",
-        tableID: 6}
-    ],
-    date: "2023-01-01",
-    tableType: false,
-    client: 1,
-    operator: 6}]
+  public ELEMENT_DATA: OnlyFansTable[] = [
+  {
+    id: 1, tableType: true, clientName: 'Alexey', tableDataSet: [{day: '1', data: 11, id: 1}, {day: '2', data: 22, id: 2},
+      {day: '3', data: 33, id: 3}, {day: '4', data: 44, id: 4}, {day: '5', data: 55, id: 5}, {day: '6', data: 66, id: 6}]
+  }];
 
   dataSource = this.ELEMENT_DATA;
 
   tables = [0];
 
-
-
-
   constructor(
     public tableData: TableDataService,
     private authService: AuthService
   ) {
-    this.displayedColumns[0] = 'clientName';
-    this.displayedColumns[1] = 'tableType';
+    // this.displayedHeader[0] = 'clientName';
+    // this.displayedHeader[1] = 'tableType';
+    // this.displayedFooter[0] = 'clientName';
+    // this.displayedFooter[1] = 'tableType';
+    this.displayedColumns[0] = 'Client Name'
+    this.displayedColumns[1] = 'Table Type';
+
     const days: any = Array.from({length: 31}, (_, i) => i + 1)
     for (var day of days) {
+      this.displayedHeader.push(day.toString())
       this.displayedColumns.push(day.toString())
+      this.displayedFooter.push(day.toString())
     }
-    this.displayedColumns.push('Sum')
+    // this.displayedHeader.push('Sum')
+    // this.displayedFooter.push('Sum')
   }
 
   ngOnInit() {
     this.tableData.get_table_data().subscribe(data =>
-      this.ELEMENT_DATA.push(data)
+      //this.ELEMENT_DATA.push(data)
+      console.log(data)
     )
   }
 
@@ -76,11 +63,7 @@ export class TableStickyComplexFlexExample implements OnInit {
   }
 
   add_table() {
-    this.ELEMENT_DATA.push()
+    //this.ELEMENT_DATA.push()
   }
-
-  element_Data = {
-  }
-
-
 }
+
