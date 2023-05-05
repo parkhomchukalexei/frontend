@@ -23,6 +23,7 @@ export class AuthService {
           (token: Token) => {
             localStorage.setItem('access-token', token.access)
             localStorage.setItem('refresh-token', token.refresh)
+            console.log(token)
             this.setToken(token)
           }
         )

@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../services/authentification.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {AuthService} from "../../services/authentification.service";
 
 @Component({
   selector: 'app-login-page',
@@ -34,11 +34,10 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit() {
+ onSubmit() {
     this.aSub = this.auth.login(this.form.value).subscribe((data)=> {
-      this.form.reset()
+     this.form.reset()
       this.router.navigate(['/workpage'])
-    })
+   })
   }
-
 }

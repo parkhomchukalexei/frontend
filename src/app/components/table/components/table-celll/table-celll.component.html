@@ -1,0 +1,9 @@
+<ng-container>
+  <div *ngIf="isDefaultColumn || !showInput else nonDefaultCell"
+       (dblclick)="onDoubleClick()">
+    {{cellData || " "}}
+  </div>
+  <ng-template #nonDefaultCell>
+    <input>
+  </ng-template>
+</ng-container>
