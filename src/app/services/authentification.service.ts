@@ -17,6 +17,7 @@ export class AuthService {
   }
 
   public login(user: User): Observable<any> {
+    console.log(user)
     return this.http.post<Token>('http://127.0.0.1:8000/api/token/', user)
       .pipe(
         tap(

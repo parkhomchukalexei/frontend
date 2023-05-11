@@ -14,7 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthService} from "./services/authentification.service";
-import {TableDataService} from "./services/tabledata.service";
+import {TableCellService, TableDataService} from "./services/tabledata.service";
 import { TableCellComponent } from './components/table/components/table-celll/table-cell.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
@@ -49,7 +49,12 @@ import {RegistrationService} from "./services/registration.service";
     MatToolbarModule,
     MatCardModule
   ],
-  providers: [AuthService, TableDataService, RegistrationService],
+  providers: [
+    AuthService,
+    TableDataService,
+    RegistrationService,
+    TableCellService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

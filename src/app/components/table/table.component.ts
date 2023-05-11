@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {TableDataService} from "../../services/tabledata.service";
 import {AuthService} from "../../services/authentification.service";
@@ -8,6 +8,11 @@ import {defaultColumns} from './constants/default-columns.constant';
 export const tableColumnNameMap: Record<string, string> = {
   "clientName": "Client Name",
   "tableType": "Table Type"
+}
+
+export interface ITableDay {
+  data: number;
+  id: number;
 }
 
 /**
@@ -56,15 +61,20 @@ export class TableStickyComplexFlexExample implements OnInit {
     private authService: AuthService
   ) {
     this.dataSource = this.ELEMENT_DATA.map((data: OnlyFansTable) => {
-      const days: Record<string, number> = {};
+      const days: Record<string, ITableDay> = {};
       data.tableDataSet.forEach((blabla) => {
-        days[blabla.day] = blabla.data
+        days[blabla.day] = {
+          data: blabla.data,
+          id: blabla.id
+        }
       })
+
       return {
         ...data,
         ...days,
       }
     })
+
   }
 
   ngOnInit() {
@@ -91,18 +101,13 @@ export class TableStickyComplexFlexExample implements OnInit {
 
   public getTotalCost(columnName: string) {
     return !this.defaultColumns.includes(columnName)
-      ? this.dataSource.map(data => data[columnName]).filter((x) => x > 0).reduce((acc, value) => acc + value, 0)
+      ? this.dataSource.map(data => data[columnName]?.data).filter((x) => x > 0).reduce((acc, value) => acc + value, 0)
       : "";
   }
 
   private _initTableColumns(): void {
     const days: any = Array.from({length: 31}, (_, i) => (i + 1).toString())
     this.displayedColumns = [...this.defaultColumns.slice(0, 2), ...days, ...this.defaultColumns.slice(2)]
-  }
-
-
-  public onClick($event: MouseEvent, showInput: boolean) {
-    showInput = true;
   }
 
   public isDefaultColumn(columnName: string): boolean {

@@ -1,9 +1,15 @@
 <ng-container>
-  <div *ngIf="isDefaultColumn || !showInput else nonDefaultCell"
-       (dblclick)="onDoubleClick()">
-    {{cellData || " " }}
+  <div *ngIf="isDefaultColumn else nonDefaultCell">
+    {{cellData || ""}}
   </div>
+
   <ng-template #nonDefaultCell>
-    <input>
+    <div *ngIf="!showInput else inputTemplate">
+      {{cellData?.data}}
+    </div>
+  </ng-template>
+
+  <ng-template #inputTemplate>
+    <input (keyup.enter)="onEnter()" [formControl]="formControl">
   </ng-template>
 </ng-container>

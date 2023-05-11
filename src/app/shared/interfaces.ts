@@ -10,7 +10,7 @@ export interface OnlyFansTable {
   clientSurname?: string
   clientName?: string
   tableType: boolean
-  tableDataSet : OnlyFansData[]
+  tableDataSet: OnlyFansData[]
 }
 
 export interface OnlyFansData{

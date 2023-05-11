@@ -85,28 +85,17 @@
     <!--    </ng-container>-->
 
     <ng-container *ngFor="let columnName of displayedColumns">
-
       <ng-container [matColumnDef]="columnName" [sticky]="isSticky(stickyColumns, columnName)">
-        <mat-header-cell *matHeaderCellDef> {{getColumnHeader(columnName)}}</mat-header-cell>
-        <mat-cell *matCellDef="let item">
-          <app-table-cell [cellData]="item[columnName]" [id]="item[columnName]?.id" [isDefaultColumn]="isDefaultColumn(columnName)"></app-table-cell>
+        <mat-header-cell *matHeaderCellDef > {{getColumnHeader(columnName)}}</mat-header-cell>
+        <mat-cell *matCellDef="let item"  (dblclick)="cell.onDoubleClick()">
+          <app-table-cell #cell [cellData]="item[columnName]" [tableId]="item.id" [day]="+columnName" [isDefaultColumn]="isDefaultColumn(columnName)" ></app-table-cell>
         </mat-cell>
         <mat-footer-cell *matFooterCellDef>{{getTotalCost(columnName)}}</mat-footer-cell>
       </ng-container>
     </ng-container>
-
+v
     <mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky(stickyHeaders, 'header-1')"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     <mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky(stickyFooters, 'footer-1')"></mat-footer-row>
   </mat-table>
 </section>
-
-<ng-template #matCell let-showInput="showInput" let-columnName="columnName" let-item="item">
-  <div *ngIf="isDefaultColumn(columnName) || !showInput else nonDefaultCell"
-                (dblclick)="onClick(columnName, showInput)">
-    {{item[columnName]}}
-  </div>
-  <ng-template #nonDefaultCell>
-    <input>
-  </ng-template>
-</ng-template>
