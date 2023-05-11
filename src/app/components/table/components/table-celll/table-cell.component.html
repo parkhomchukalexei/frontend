@@ -1,7 +1,7 @@
 <ng-container>
   <div *ngIf="isDefaultColumn || !showInput else nonDefaultCell"
        (dblclick)="onDoubleClick()">
-    {{cellData || " "}}
+    {{cellData || " " }}
   </div>
   <ng-template #nonDefaultCell>
     <input>

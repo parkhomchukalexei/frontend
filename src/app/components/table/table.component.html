@@ -89,7 +89,7 @@
       <ng-container [matColumnDef]="columnName" [sticky]="isSticky(stickyColumns, columnName)">
         <mat-header-cell *matHeaderCellDef> {{getColumnHeader(columnName)}}</mat-header-cell>
         <mat-cell *matCellDef="let item">
-          <app-table-celll [cellData]="item[columnName]" [isDefaultColumn]="isDefaultColumn(columnName)"></app-table-celll>
+          <app-table-cell [cellData]="item[columnName]" [id]="item[columnName]?.id" [isDefaultColumn]="isDefaultColumn(columnName)"></app-table-cell>
         </mat-cell>
         <mat-footer-cell *matFooterCellDef>{{getTotalCost(columnName)}}</mat-footer-cell>
       </ng-container>

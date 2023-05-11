@@ -1,31 +1,35 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthService} from "../../services/authentification.service";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {LoginData} from "../../shared/interfaces";
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.css']
+  styleUrls: ['./login-page.component.css'],
 })
-export class LoginPageComponent implements OnInit, OnDestroy {
+export class LoginPageComponent implements OnInit{
 
-  form: FormGroup
-  aSub: Subscription
+  private aSub: Subscription
 
-  constructor(
+constructor(
+    public dialogRef: MatDialogRef<LoginPageComponent>,
     private auth: AuthService,
-    private router: Router
-  ) {
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: LoginData) {}
+
+
+  onNoClick(): void {
+    this.aSub = this.auth.login({username: this.data.login, password: this.data.password}).subscribe((data)=> {
+      this.dialogRef.close()
+      this.ngOnDestroy()
+      this.router.navigate(['/workpage'])
+  })
   }
 
   ngOnInit() {
-    this.form = new FormGroup(
-      {
-        username: new FormControl(null, [Validators.required]),
-        password: new FormControl(null, [Validators.required])
-      })
   }
 
   ngOnDestroy() {
@@ -34,10 +38,4 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     }
   }
 
- onSubmit() {
-    this.aSub = this.auth.login(this.form.value).subscribe((data)=> {
-     this.form.reset()
-      this.router.navigate(['/workpage'])
-   })
-  }
 }

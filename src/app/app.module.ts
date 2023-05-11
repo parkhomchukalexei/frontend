@@ -15,7 +15,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthService} from "./services/authentification.service";
 import {TableDataService} from "./services/tabledata.service";
-import { TableCelllComponent } from './components/table/components/table-celll/table-celll.component';
+import { TableCellComponent } from './components/table/components/table-celll/table-cell.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatInputModule} from "@angular/material/input";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { RegistrationComponent } from './components/registration/registration.component';
+import {MatCardModule} from "@angular/material/card";
+import {RegistrationService} from "./services/registration.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +30,8 @@ import { TableCelllComponent } from './components/table/components/table-celll/t
     LoginPageComponent,
     TableStickyComplexFlexExample,
     TestTableComponent,
-    TableCelllComponent,
+    TableCellComponent,
+    RegistrationComponent,
 
   ],
   imports: [
@@ -36,9 +43,13 @@ import { TableCelllComponent } from './components/table/components/table-celll/t
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatDialogModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatCardModule
   ],
-  providers: [AuthService, TableDataService],
+  providers: [AuthService, TableDataService, RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

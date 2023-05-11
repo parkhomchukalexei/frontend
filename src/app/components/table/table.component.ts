@@ -35,6 +35,17 @@ export class TableStickyComplexFlexExample implements OnInit {
           data: 66,
           id: 6
         }]
+    },
+    {
+      id: 1,
+      tableType: true,
+      clientName: 'Alexey',
+      tableDataSet: [{day: '1', data: 11, id: 1}, {day: '2', data: 22, id: 2},
+        {day: '3', data: 33, id: 3}, {day: '4', data: 44, id: 4}, {day: '5', data: 55, id: 5}, {
+          day: '6',
+          data: 66,
+          id: 6
+        }]
     }
   ];
 
@@ -51,15 +62,17 @@ export class TableStickyComplexFlexExample implements OnInit {
       })
       return {
         ...data,
-        ...days
+        ...days,
       }
     })
   }
 
   ngOnInit() {
     this._initTableColumns();
+    console.log(this.dataSource)
     this.tableData.get_table_data().subscribe(data =>
       this.ELEMENT_DATA.push(data)
+
     )
   }
 
@@ -78,7 +91,7 @@ export class TableStickyComplexFlexExample implements OnInit {
 
   public getTotalCost(columnName: string) {
     return !this.defaultColumns.includes(columnName)
-      ? this.dataSource.map(data => data[columnName]).reduce((acc, value) => acc + value, 0)
+      ? this.dataSource.map(data => data[columnName]).filter((x) => x > 0).reduce((acc, value) => acc + value, 0)
       : "";
   }
 
@@ -90,8 +103,6 @@ export class TableStickyComplexFlexExample implements OnInit {
 
   public onClick($event: MouseEvent, showInput: boolean) {
     showInput = true;
-    console.log(showInput);
-    console.log("hello");
   }
 
   public isDefaultColumn(columnName: string): boolean {

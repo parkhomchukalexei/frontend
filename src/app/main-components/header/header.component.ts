@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HeaderItem} from "./interfaces/header-item.interface";
+import {MatDialog} from "@angular/material/dialog";
+import {LoginPageComponent} from "../../components/login-page/login-page.component";
 
 @Component({
   selector: 'app-header',
@@ -10,9 +12,15 @@ import {HeaderItem} from "./interfaces/header-item.interface";
 
 export class HeaderComponent implements OnInit{
 
+public login: string
+  public password: string
+
+
   public headerItems: HeaderItem[];
 
+  constructor(public dialog: MatDialog) {}
   public ngOnInit() {
+
 
 
 
@@ -44,5 +52,17 @@ export class HeaderComponent implements OnInit{
 
 
 
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(LoginPageComponent, {
+      width: '250px',
+      data: {login: this.login, password: this.password}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.login = result.login
+      this.password = result.password;
+    });
   }
 }

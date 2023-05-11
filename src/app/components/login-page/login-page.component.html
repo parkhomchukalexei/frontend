@@ -1,23 +1,14 @@
-<form class="card" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h2>Войти в панель администратора</h2>
-
-  <div
-    class="form-control"
-  >
-    <label for="username">Login</label>
-    <input id="username" formControlName="username">
-    </div>
-
-  <div
-    class="form-control"
-  >
-    <label for="password">Пароль:</label>
-    <input id="password" type="password" formControlName="password">
-  </div>
-
-  <button
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="form.invalid"
-  >Войти</button>
-</form>
+<div id="Login">
+<h1 mat-dialog-title>Login page</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.login" placeholder="Login">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.password" type="password" placeholder="Password">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Login</button>
+</div>
+</div>
