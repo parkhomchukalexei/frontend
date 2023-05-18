@@ -11,9 +11,11 @@ export class RegistrationService{
   constructor(private http: HttpClient){
   }
 
-  public register(data: RegistrationData): Subscription{
-    return this.http.post<Subscription>('http://127.0.0.1:8000/users/registration/register/', data).subscribe()
-
+  public register(data: RegistrationData){
+    return this.http.post('http://127.0.0.1:8000/users/registration/register/', data).subscribe(
+      (response) => (console.log(response)),
+      (error) => (console.log('huinya'))
+    )
   }
 
 }

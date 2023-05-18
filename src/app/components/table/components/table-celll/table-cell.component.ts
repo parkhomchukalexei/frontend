@@ -33,8 +33,15 @@ export class TableCellComponent implements OnInit {
 
   public onEnter() {
     //тут сделать проверку на велью и отправлять либо патч либо Пост
-    this.service.patch_table_cell(this.cellData.id, this.formControl.value)
+    if( this.cellData != undefined){
+      this.service.patch_table_cell(this.cellData.id, this.formControl.value)
+    }
+    else{
+      this.service.create_new_table_cell(this.tableId, this.day, this.formControl.value)
+    }
+
     this.showInput = false;
+    //тут как отобржатаь новую кнопку
     this.cellData["data"] = this.formControl.value;
 
   }

@@ -24,11 +24,19 @@ export class TableCellService{
   public patch_table_cell(id:number, data:number){
     const token = this.token.getAccessToken()
     return this.http.patch(
-      `http://127.0.0.1:8000/onlyfans/table_data/${id}/`, {data: data},{headers:{"Authorization":`Token ${this.token}`}}
+      `http://127.0.0.1:8000/onlyfans/table_data/${id}/`, {data: data},{headers:{"Authorization":`Token ${token}`}}
     )
       .subscribe((data) => console.log(data)
       )
 
+  }
+
+  public create_new_table_cell(tableID: number, day: number, data: number){
+    const token = this.token.getAccessToken()
+    const cellData = {data: data, tableId: tableID, date: day}
+    return this.http.post(
+      `http://127.0.0.1:8000/onlyfans/table_data/`, cellData, {headers: {"Authorization":`Token ${token}`}}
+    ).subscribe( (data) => console.log(data))
   }
 
 

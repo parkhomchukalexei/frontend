@@ -13,7 +13,11 @@ export const tableColumnNameMap: Record<string, string> = {
 export interface ITableDay {
   data: number;
   id: number;
+  tableID?: number;
+  day?: number;
+
 }
+
 
 /**
  * @title Flex-layout tables with toggle-able sticky headers, footers, and columns
@@ -29,30 +33,30 @@ export class TableStickyComplexFlexExample implements OnInit {
   public defaultColumns: string[] = defaultColumns;
   public dataSource: any[];
 
-  public ELEMENT_DATA: OnlyFansTable[] = [
-    {
-      id: 1,
-      tableType: true,
-      clientName: 'Alexey',
-      tableDataSet: [{day: '1', data: 11, id: 1}, {day: '2', data: 22, id: 2},
-        {day: '3', data: 33, id: 3}, {day: '4', data: 44, id: 4}, {day: '5', data: 55, id: 5}, {
-          day: '6',
-          data: 66,
-          id: 6
-        }]
-    },
-    {
-      id: 1,
-      tableType: true,
-      clientName: 'Alexey',
-      tableDataSet: [{day: '1', data: 11, id: 1}, {day: '2', data: 22, id: 2},
-        {day: '3', data: 33, id: 3}, {day: '4', data: 44, id: 4}, {day: '5', data: 55, id: 5}, {
-          day: '6',
-          data: 66,
-          id: 6
-        }]
-    }
-  ];
+  public ELEMENT_DATA: OnlyFansTable[] = []
+  //   {
+  //     id: 1,
+  //     tableType: true,
+  //     clientName: 'Alexey',
+  //     tableDataSet: [{day: '1', data: 11, id: 1}, {day: '2', data: 22, id: 2},
+  //       {day: '3', data: 33, id: 3}, {day: '4', data: 44, id: 4}, {day: '5', data: 55, id: 5}, {
+  //         day: '6',
+  //         data: 66,
+  //         id: 6
+  //       }]
+  //   },
+  //   {
+  //     id: 1,
+  //     tableType: true,
+  //     clientName: 'Alexey',
+  //     tableDataSet: [{day: '1', data: 11, id: 1}, {day: '2', data: 22, id: 2},
+  //       {day: '3', data: 33, id: 3}, {day: '4', data: 44, id: 4}, {day: '5', data: 55, id: 5}, {
+  //         day: '6',
+  //         data: 66,
+  //         id: 6
+  //       }]
+  //   }
+  // ];
 
   tables = [0];
 
@@ -60,6 +64,12 @@ export class TableStickyComplexFlexExample implements OnInit {
     public tableData: TableDataService,
     private authService: AuthService
   ) {
+
+    this.tableData.get_table_data().subscribe(data =>
+      //this.ELEMENT_DATA.push(data)
+      console.log(data)
+    )
+    console.log(this.ELEMENT_DATA)
     this.dataSource = this.ELEMENT_DATA.map((data: OnlyFansTable) => {
       const days: Record<string, ITableDay> = {};
       data.tableDataSet.forEach((blabla) => {
@@ -68,13 +78,14 @@ export class TableStickyComplexFlexExample implements OnInit {
           id: blabla.id
         }
       })
+      console.log(data.tableDataSet)
 
       return {
         ...data,
         ...days,
       }
     })
-
+console.log(this.dataSource)
   }
 
   ngOnInit() {
@@ -82,7 +93,6 @@ export class TableStickyComplexFlexExample implements OnInit {
     console.log(this.dataSource)
     this.tableData.get_table_data().subscribe(data =>
       this.ELEMENT_DATA.push(data)
-
     )
   }
 
@@ -92,7 +102,9 @@ export class TableStickyComplexFlexExample implements OnInit {
   }
 
   add_table() {
-    this.ELEMENT_DATA.push()
+    this.tableData.get_table_data().subscribe(data =>
+      this.ELEMENT_DATA.push(data)
+    )
   }
 
   public getColumnHeader(columnName: string): string {
