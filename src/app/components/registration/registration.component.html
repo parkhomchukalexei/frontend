@@ -6,34 +6,35 @@
     <span>Registration</span>
   </mat-toolbar>
   <mat-card-content>
-    <form class="my-form">
+    <form class="my-form" [formGroup]="registrationForm">
       <mat-form-field class="full-width">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="Username" [(ngModel)]="username"  name="username" required>
+        <input matInput placeholder="Username" formControlName="username">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>First Name</mat-label>
-        <input matInput placeholder="First name" [(ngModel)]="fname"  name="fname" required>
+        <input matInput placeholder="First name" formControlName="first_name">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Last Name</mat-label>
-        <input matInput placeholder="Last Name" [(ngModel)]="lname" name="lname" required>
+        <input matInput placeholder="Last Name" formControlName="last_name">
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="Email" [(ngModel)]="email" name="email">
+        <input matInput placeholder="Email" formControlName="email" >
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="Password" [(ngModel)]="password" name="password">
+        <input matInput placeholder="Password" formControlName="password" >
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Password Confirm</mat-label>
-        <input matInput placeholder="Password Confirm" [(ngModel)]="password_confirm" name="password_confirm">
+        <input matInput placeholder="Password Confirm" formControlName="password_confirm" >
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button (click)="register()" color="primary">REGISTER</button>
+    <button mat-raised-button [disabled]="registrationForm.invalid" (click)="register()" color="primary">REGISTER</button>
   </mat-card-actions>
+  <div *ngIf="registrationForm.invalid">Your form is invalid</div>
 </mat-card>

@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {HeaderComponent} from "./main-components/header/header.component";
 import {LoginPageComponent} from "./components/login-page/login-page.component";
-import {TableStickyComplexFlexExample} from "./components/table/table.component";
-import {TestTableComponent} from "./components/test-table/test-table.component";
+import {TableComponent} from "./components/table/table.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatTableModule} from "@angular/material/table";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
@@ -22,16 +21,18 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import { RegistrationComponent } from './components/registration/registration.component';
 import {MatCardModule} from "@angular/material/card";
 import {RegistrationService} from "./services/registration.service";
+import { MainComponent } from './components/main/main.component';
+import {MatTabsModule} from "@angular/material/tabs";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginPageComponent,
-    TableStickyComplexFlexExample,
-    TestTableComponent,
+    TableComponent,
     TableCellComponent,
     RegistrationComponent,
+    MainComponent,
 
   ],
   imports: [
@@ -47,7 +48,8 @@ import {RegistrationService} from "./services/registration.service";
     MatDialogModule,
     MatInputModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [
     AuthService,

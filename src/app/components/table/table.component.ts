@@ -1,4 +1,4 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {TableDataService} from "../../services/tabledata.service";
 import {AuthService} from "../../services/authentification.service";
@@ -23,12 +23,13 @@ export interface ITableDay {
  * @title Flex-layout tables with toggle-able sticky headers, footers, and columns
  */
 @Component({
-  selector: 'table-sticky-complex-flex-example',
+  selector: 'app-table',
   styleUrls: ['table.component.css'],
   templateUrl: 'table.component.html',
 })
 
-export class TableStickyComplexFlexExample implements OnInit {
+export class TableComponent implements OnInit {
+  @Input()
   public displayedColumns: string[] = [];
   public defaultColumns: string[] = defaultColumns;
   public dataSource: any[];
@@ -126,5 +127,3 @@ console.log(this.dataSource)
     return this.defaultColumns.includes(columnName)
   }
 }
-
-

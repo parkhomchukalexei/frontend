@@ -11,7 +11,7 @@ export class TableDataService {
 
   public get_table_data(){
     const token = this.token.getAccessToken()
-    return this.http.get<OnlyFansTable>('http://127.0.0.1:8000/onlyfans/table_view/?month=1', {headers: {"Authorization":`Token ${token}`}})
+    return this.http.get<OnlyFansTable>('http://127.0.0.1:8000/onlyfans/table_view/?page=1', {headers: {"Authorization":`Token ${token}`}})
   }
 }
 

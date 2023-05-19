@@ -1,0 +1,11 @@
+<mat-tab-group>
+  <ng-container *ngFor="let tab of tabs">
+    <mat-tab [label]="tab.label">
+      <ng-container [ngTemplateOutlet]="tab.content"></ng-container>
+    </mat-tab>
+  </ng-container>
+</mat-tab-group>
+
+<ng-template #dataTableTemplate>
+  <app-table></app-table>
+</ng-template>
