@@ -1,40 +1,64 @@
 <div>
   <button mat-raised-button (click)="add_table()">Add table</button>
-  <button mat-raised-button (click)="dataSource.pop()">Remove table</button>
-</div>
-
-<div>
-  Sticky Headers:
+  <button mat-raised-button> Remove table</button>
+<button mat-button [matMenuTriggerFor]="setup">setup</button>
+<mat-menu #setup="matMenu">
   <mat-button-toggle-group multiple [value]="['header-1']"
                            #stickyHeaders="matButtonToggleGroup"
                            class="example-sticky-toggle-group">
-    <mat-button-toggle value="header-1"> Row 1</mat-button-toggle>
+    <mat-button-toggle value="header-1"> Header</mat-button-toggle>
   </mat-button-toggle-group>
-</div>
-
-<div>
-  Sticky Footers:
   <mat-button-toggle-group multiple [value]="['footer-1']"
                            #stickyFooters="matButtonToggleGroup"
                            class="example-sticky-toggle-group">
-    <mat-button-toggle value="footer-1"> Row 1</mat-button-toggle>
+    <mat-button-toggle value="footer-1"> Footer</mat-button-toggle>
   </mat-button-toggle-group>
-</div>
+  <button mat-menu-item [matMenuTriggerFor]="Columns">StickyColumns</button>
+</mat-menu>
 
-<div>
-  Sticky Columns:
+<mat-menu #Columns="matMenu">
   <mat-button-toggle-group multiple [value]="['symbol']"
                            #stickyColumns="matButtonToggleGroup"
                            class="example-sticky-toggle-group">
     <mat-button-toggle value="clientName">Client Name</mat-button-toggle>
     <mat-button-toggle value="tableType"> Table Type</mat-button-toggle>
-    <mat-button-toggle value="Sum"> Sum</mat-button-toggle>
   </mat-button-toggle-group>
+</mat-menu>
 </div>
 
 
+<!---->
+<!--<div>-->
+<!--  Sticky Headers:-->
+<!--  <mat-button-toggle-group multiple [value]="['header-1']"-->
+<!--                           #stickyHeaders="matButtonToggleGroup"-->
+<!--                           class="example-sticky-toggle-group">-->
+<!--    <mat-button-toggle value="header-1"> Row 1</mat-button-toggle>-->
+<!--  </mat-button-toggle-group>-->
+<!--</div>-->
+<!---->
+<!--<div>-->
+<!--  Sticky Footers:-->
+<!--  <mat-button-toggle-group multiple [value]="['footer-1']"-->
+<!--                           #stickyFooters="matButtonToggleGroup"-->
+<!--                           class="example-sticky-toggle-group">-->
+<!--    <mat-button-toggle value="footer-1"> Row 1</mat-button-toggle>-->
+<!--  </mat-button-toggle-group>-->
+<!--</div>-->
+<!---->
+<!--<div>-->
+<!--  Sticky Columns:-->
+<!--  <mat-button-toggle-group multiple [value]="['symbol']"-->
+<!--                           #stickyColumns="matButtonToggleGroup"-->
+<!--                           class="example-sticky-toggle-group">-->
+<!--    <mat-button-toggle value="clientName">Client Name</mat-button-toggle>-->
+<!--    <mat-button-toggle value="tableType"> Table Type</mat-button-toggle>-->
+<!--    <mat-button-toggle value="Sum"> Sum</mat-button-toggle>-->
+<!--  </mat-button-toggle-group>-->
+<!--</div>-->
+<!---->
 <section class="example-container mat-elevation-z8" tabindex="0">
-  <mat-table [dataSource]="dataSource" *ngFor="let table of tables">
+  <mat-table [dataSource]="dataSource$" *ngFor="let table of tables">
 
     <!--    <ng-container matColumnDef="position" [sticky]="isSticky(stickyColumns, 'position')">-->
     <!--      <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>-->
@@ -99,3 +123,5 @@ v
     <mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky(stickyFooters, 'footer-1')"></mat-footer-row>
   </mat-table>
 </section>
+
+

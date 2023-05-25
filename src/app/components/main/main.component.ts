@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
 
 export interface ITabInfo {
   label: string;
@@ -8,7 +8,8 @@ export interface ITabInfo {
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  styleUrls: ['./main.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MainComponent implements OnInit{
   public tabs: ITabInfo[];
@@ -23,6 +24,10 @@ export class MainComponent implements OnInit{
   private _initTabs(): void {
     this.tabs = [
       {
+        label: "December",
+        content: this.dataTableTemplate
+      },
+      {
         label: "January",
         content: this.dataTableTemplate
       },
@@ -32,6 +37,38 @@ export class MainComponent implements OnInit{
       },
       {
         label: "March",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "April",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "May",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "June",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "July",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "August",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "September",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "October",
+        content: this.dataTableTemplate
+      },
+      {
+        label: "November",
         content: this.dataTableTemplate
       }
     ]

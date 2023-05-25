@@ -50,4 +50,9 @@
   background: white;
 }
 
+button:disabled {
+    color: black;
+
+}
+
 

@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
 import {AuthService} from "./authentification.service";
 import {OnlyFansTable} from "../shared/interfaces";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class TableDataService {
@@ -9,9 +10,9 @@ export class TableDataService {
   constructor(private http: HttpClient, private token: AuthService) {
   }
 
-  public get_table_data(){
+  public get_table_data(): Observable<OnlyFansTable[]>{
     const token = this.token.getAccessToken()
-    return this.http.get<OnlyFansTable>('http://127.0.0.1:8000/onlyfans/table_view/?page=1', {headers: {"Authorization":`Token ${token}`}})
+    return this.http.get<OnlyFansTable[]>('http://127.0.0.1:8000/onlyfans/table_view/?month=10', {headers: {"Authorization":`Token ${token}`}})
   }
 }
 

@@ -5,6 +5,21 @@ mat-header-cell {
   color: black;
 }
 
+.mat-mdc-table tbody, .mat-mdc-table tfoot, .mat-mdc-table thead, .mat-mdc-cell, .mat-mdc-footer-cell, .mat-mdc-header-row, .mat-mdc-row, .mat-mdc-footer-row, .mat-mdc-table .mat-mdc-header-cell {
+    background: whitesmoke;
+    color: black;
+}
+.mdc-data-table__cell, .mdc-data-table__header-cell {
+    border-bottom-width: 1px;
+    border-bottom-color: white;
+    border-left-color: white;
+    border-right-color: white;
+    border-inline-color: white;
+    border-block-color: white;
+    /*border-left: groove;*/
+    /*border-bottom: groove;*/
+}
+
 .mat-mdc-table-sticky {
   background: #009500;
   opacity: 1;
@@ -43,4 +58,9 @@ mat-header-cell {
 
 .mat-mdc-table-sticky-border-elem-left {
   border-right: 2px solid white;
+}
+
+.mat-mdc-button:not(:disabled) {
+  color: #fff;
+  background: #424242;
 }

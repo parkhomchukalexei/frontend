@@ -1,6 +1,6 @@
 <div id="Login">
 <h1 mat-dialog-title>Login page</h1>
-<div mat-dialog-content>
+<div mat-dialog-content (keyup.enter) ="onNoClick()">
   <mat-form-field>
     <input matInput [(ngModel)]="data.login" placeholder="Login">
   </mat-form-field>
@@ -9,6 +9,6 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Login</button>
+  <button mat-button  (click)="onNoClick()">Login</button>
 </div>
 </div>
