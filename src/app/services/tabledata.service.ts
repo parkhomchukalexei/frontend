@@ -10,9 +10,10 @@ export class TableDataService {
   constructor(private http: HttpClient, private token: AuthService) {
   }
 
-  public get_table_data(): Observable<OnlyFansTable[]>{
+  public get_table_data(month: number): Observable<OnlyFansTable[]>{
     const token = this.token.getAccessToken()
-    return this.http.get<OnlyFansTable[]>('http://127.0.0.1:8000/onlyfans/table_view/?month=10', {headers: {"Authorization":`Token ${token}`}})
+    console.log('menya vuzvali')
+    return this.http.get<OnlyFansTable[]>(`http://127.0.0.1:8000/onlyfans/table_view/?month=${month}`, {headers: {"Authorization":`Token ${token}`}})
   }
 }
 

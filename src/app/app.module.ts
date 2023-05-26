@@ -25,13 +25,13 @@ import {MainComponent} from './components/main/main.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
-import {AuthInterceptor} from "./shared/auth.interceptor";
+// import {AuthInterceptor} from "./shared/auth.interceptor";
 
-const INTERCEPTOR_PROVIDER: Provider = {
-  provide: HTTP_INTERCEPTORS,
-  multi: true,
-  useClass: AuthInterceptor
-}
+// const INTERCEPTOR_PROVIDER: Provider = {
+//   provide: HTTP_INTERCEPTORS,
+//   multi: true,
+//   useClass: AuthInterceptor
+// }
 
 @NgModule({
   declarations: [
@@ -67,7 +67,6 @@ const INTERCEPTOR_PROVIDER: Provider = {
     TableDataService,
     RegistrationService,
     TableCellService,
-    INTERCEPTOR_PROVIDER,
   ],
   bootstrap: [AppComponent]
 })

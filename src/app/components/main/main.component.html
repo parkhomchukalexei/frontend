@@ -1,12 +1,12 @@
 <app-header></app-header>
-<mat-tab-group>
+<mat-tab-group (selectedTabChange)="onTabChange($event)" >
   <ng-container *ngFor="let tab of tabs">
     <mat-tab [label]="tab.label">
-      <ng-container [ngTemplateOutlet]="tab.content"></ng-container>
+      <ng-container [ngTemplateOutlet]="dataTableTemplate" [ngTemplateOutletContext]="{'label': tab.label}"></ng-container>
     </mat-tab>
   </ng-container>
 </mat-tab-group>
 
-<ng-template #dataTableTemplate>
-  <app-table></app-table>
+<ng-template #dataTableTemplate let-label="label">
+  <app-table *ngIf="label === currentMonth" [displayedColumns]="displayedColumns" [dataSource$]="dataSource$"></app-table>
 </ng-template>

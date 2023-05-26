@@ -5,12 +5,21 @@ export interface User {
 
 
 
-export interface OnlyFansTable {
-  id: number
-  clientSurname?: string
-  clientName?: string
-  tableType?: boolean
-  tabledata_set: OnlyFansData[]
+export interface OnlyFansTable extends TableDataCells{
+  id: number;
+  clientSurname: string;
+  clientName: string;
+  tableType: boolean;
+  tabledata_set: OnlyFansData[];
+}
+
+export interface TableDataCells {
+  [key: string]: CellWithData | string | boolean | OnlyFansData[] | number;
+}
+
+export interface CellWithData {
+  data: number;
+  id: number;
 }
 
 export interface OnlyFansData{
