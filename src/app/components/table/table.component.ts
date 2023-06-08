@@ -3,6 +3,11 @@ import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {CellWithData, OnlyFansTable} from "../../shared/interfaces";
 import {defaultColumns} from './constants/default-columns.constant';
 import {map, Observable, tap} from "rxjs";
+import {DialogRef} from "@angular/cdk/dialog";
+import {MatDialog} from "@angular/material/dialog";
+import {CreateTableComponent} from "../create-table/create-table.component";
+
+import {TableDataService} from "../../services/table.service";
 
 export const tableColumnNameMap: Record<string, string> = {
   "clientName": "Client Name",
@@ -38,10 +43,13 @@ export class TableComponent implements OnInit {
 
   public dataSource: OnlyFansTable[];
 
+  public createNewTableService: TableDataService
+
   @Input()
   public month: number;
 
   constructor(
+    public dialog : MatDialog
   ) {
   }
 
@@ -49,16 +57,27 @@ export class TableComponent implements OnInit {
     this.dataSource$.subscribe((data) => this.dataSource = data)
   }
 
+
   /** Whether the button toggle group contains the id as an active value. */
   isSticky(buttonToggleGroup: MatButtonToggleGroup, id: string) {
     return (buttonToggleGroup.value || []).indexOf(id) !== -1;
   }
 
   add_table() {
-    // this.tableData.get_table_data().subscribe(data =>
-    //   this.ELEMENT_DATA.push()
-      // console.log('hui')
+  const dialog = this.dialog.open(CreateTableComponent)
+    // data: {month: this.month, tableType: , client: this.Client,
+    //     operator: this.operator}})
+
+    // dialog.afterClosed().subscribe(
+    //   result => {
+    //     console.log('hui')
+
+        // this.createNewTableService.createNewTable({month: result.month, tableType: result.TableType, client: result.Client,
+        // operator: result.operator})
+        // console.log(result)
+      // }
     // )
+
   }
 
   public getColumnHeader(columnName: string): string {
@@ -66,18 +85,24 @@ export class TableComponent implements OnInit {
   }
 
   public getTotalCost(columnName: keyof OnlyFansTable)  {
-    console.log(this.dataSource);
+
     if (this.defaultColumns.includes(columnName as string)) {
       return "";
     }
     else{
       let counter = 0;
+      let TableCounter = 0;
       (this.dataSource || []).forEach((dataSourceItem: OnlyFansTable) => {
         counter += (dataSourceItem[columnName] as unknown as CellWithData)?.data || 0;
       })
-      return counter;
+        return counter;
       // return this.dataSource$.forEach(data  => data[columnName]?.data).filter((x) => x > 0).reduce((acc, value) => acc + value, 0)
     }
+  }
+
+  public getTableCost(){
+    let columnName = 1
+      let counter = 0;
   }
 
   public isDefaultColumn(columnName: string): boolean {

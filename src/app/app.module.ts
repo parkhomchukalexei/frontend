@@ -13,7 +13,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AppRoutingModule} from "./app-routing.module";
 import {AuthService} from "./services/authentification.service";
-import {TableCellService, TableDataService} from "./services/tabledata.service";
+import {TableCellService} from "./services/tabledata.service";
 import {TableCellComponent} from './components/table/components/table-celll/table-cell.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatInputModule} from "@angular/material/input";
@@ -25,6 +25,9 @@ import {MainComponent} from './components/main/main.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatMenuModule} from "@angular/material/menu";
+import { CreateTableComponent } from './components/create-table/create-table.component';
+import {MatSelectModule} from "@angular/material/select";
+import {TableDataService} from "./services/table.service";
 // import {AuthInterceptor} from "./shared/auth.interceptor";
 
 // const INTERCEPTOR_PROVIDER: Provider = {
@@ -42,6 +45,7 @@ import {MatMenuModule} from "@angular/material/menu";
     TableCellComponent,
     RegistrationComponent,
     MainComponent,
+    CreateTableComponent,
 
   ],
   imports: [
@@ -60,7 +64,8 @@ import {MatMenuModule} from "@angular/material/menu";
     MatCardModule,
     MatTabsModule,
     MatExpansionModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
   providers: [
     AuthService,

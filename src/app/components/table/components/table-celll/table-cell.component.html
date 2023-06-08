@@ -4,12 +4,12 @@
   </div>
 
   <ng-template #nonDefaultCell>
-    <div *ngIf="!showInput else inputTemplate">
+    <div *ngIf="!showInput else inputTemplate" >
       {{cellData?.data}}
     </div>
   </ng-template>
 
   <ng-template #inputTemplate>
-    <input (keyup.enter)="onEnter()" [formControl]="formControl">
+    <input (keyup.enter)="formControl.valid && (onEnter())" [formControl]="formControl">
   </ng-template>
 </ng-container>

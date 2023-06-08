@@ -3,15 +3,15 @@
   <button mat-raised-button> Remove table</button>
 <button mat-button [matMenuTriggerFor]="setup">setup</button>
 <mat-menu #setup="matMenu">
-  <mat-button-toggle-group multiple [value]="['header-1']"
+  <mat-button-toggle-group multiple [value]="['header']"
                            #stickyHeaders="matButtonToggleGroup"
                            class="example-sticky-toggle-group">
-    <mat-button-toggle value="header-1"> Header</mat-button-toggle>
+    <mat-button-toggle value="header"> Header</mat-button-toggle>
   </mat-button-toggle-group>
-  <mat-button-toggle-group multiple [value]="['footer-1']"
+  <mat-button-toggle-group multiple [value]="['footer']"
                            #stickyFooters="matButtonToggleGroup"
                            class="example-sticky-toggle-group">
-    <mat-button-toggle value="footer-1"> Footer</mat-button-toggle>
+    <mat-button-toggle value="footer"> Footer</mat-button-toggle>
   </mat-button-toggle-group>
   <button mat-menu-item [matMenuTriggerFor]="Columns">StickyColumns</button>
 </mat-menu>
@@ -112,14 +112,14 @@
       <ng-container [matColumnDef]="columnName" [sticky]="isSticky(stickyColumns, columnName)">
         <mat-header-cell *matHeaderCellDef > {{getColumnHeader(columnName)}}</mat-header-cell>
         <mat-cell *matCellDef="let item"  (dblclick)="cell.onDoubleClick()">
-          <app-table-cell #cell [cellData]="item[columnName]" [tableId]="item.id" [day]="+columnName" [isDefaultColumn]="isDefaultColumn(columnName)" ></app-table-cell>
+          <app-table-cell #cell [cellData]="item[columnName]" [tableId]="item.id" [day]="+columnName" [isDefaultColumn]="isDefaultColumn(columnName)"></app-table-cell>
         </mat-cell>
         <mat-footer-cell *matFooterCellDef>{{getTotalCost(columnName)}}</mat-footer-cell>
       </ng-container>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky(stickyHeaders, 'header-1')"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: isSticky(stickyHeaders, 'header')"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    <mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky(stickyFooters, 'footer-1')"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="displayedColumns; sticky: isSticky(stickyFooters, 'footer')"></mat-footer-row>
   </mat-table>
 </section>

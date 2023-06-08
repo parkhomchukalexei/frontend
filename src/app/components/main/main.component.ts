@@ -4,7 +4,8 @@ import {defaultColumns} from "../table/constants/default-columns.constant";
 import {map, Observable} from "rxjs";
 import {OnlyFansTable} from "../../shared/interfaces";
 import {ITableDay} from "../table/table.component";
-import {TableDataService} from "../../services/tabledata.service";
+
+import {TableDataService} from "../../services/table.service";
 
 export interface ITabInfo {
   label: Month;
@@ -84,12 +85,12 @@ export class MainComponent implements OnInit{
   }
 
   public ngOnInit() {
-    this._initTabs();
     this._initDataSource();
+    this._initTabs();
+
   }
 
   private _initTabs(): void {
-    console.log('YA INIT')
     this.tabs = [];
     this.months.forEach((month: Month) => {
       this.tabs.push({
@@ -100,7 +101,6 @@ export class MainComponent implements OnInit{
   }
 
   public onTabChange($event: MatTabChangeEvent) {
-    console.log("tabChange");
     this.currentMonth = $event.tab.textLabel as Month;
     this._initColumns();
     this._initDataSource();
@@ -113,8 +113,7 @@ export class MainComponent implements OnInit{
 
 
   private _initDataSource(): void {
-    console.log(this.dataSource$)
-    this.dataSource$ = this.tableData.get_table_data(this.months.indexOf(this.currentMonth))
+    this.dataSource$ = this.tableData.get_table_data(this.months.indexOf(this.currentMonth) + 1)
       .pipe(
         map((data: OnlyFansTable[]) =>
           data.map((data: OnlyFansTable) => {

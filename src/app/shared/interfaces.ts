@@ -1,3 +1,5 @@
+import {FormControl} from "@angular/forms";
+
 export interface User {
   username: string
   password: string
@@ -31,4 +33,30 @@ export interface OnlyFansData{
 export interface LoginData{
   login : string
   password : string
+}
+
+
+export interface CreateOnlyfansTable{
+  month : FormControl<number>,
+  client: FormControl<number>,
+  operator: FormControl<number>,
+  tableType: FormControl<boolean>,
+}
+
+export interface OperatorData{
+  id: number
+  username: string
+
+}
+
+export interface ClientData{
+  id: number
+  name: string
+}
+
+
+export interface Resp {
+  client: {};
+  operator: {}
+
 }

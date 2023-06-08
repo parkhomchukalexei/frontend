@@ -45,14 +45,24 @@
 <!--</nav>-->
 
 
-<mat-toolbar>
-   <mat-toolbar-row>
+<ng-container>
+  <mat-toolbar>
+    <mat-toolbar-row>
       <a mat-button routerLink="/">Heaven</a>
+      <a mat-button routerLink="/workpage">OnlyFans Table</a>
       <span class="spacer"></span>
-      <a mat-button routerLink="/register">Register</a>
-      <a mat-button (click)="openDialog()">Login</a>
-   </mat-toolbar-row>
-</mat-toolbar>
+      <div *ngIf="isLoggin else logout">
+        <a mat-button (click)="Logout()">Logout</a>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <ng-template #logout>
+    <a mat-button routerLink="/register">Register</a>
+    <a mat-button (click)="openDialog()">Login</a>
+  </ng-template>
+
+</ng-container>
 
 <!--<nav class="navbar navbar-expand-lg bg-light">-->
 <!--  <div class="container-fluid">-->

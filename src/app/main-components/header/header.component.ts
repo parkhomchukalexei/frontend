@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {HeaderItem} from "./interfaces/header-item.interface";
 import {MatDialog} from "@angular/material/dialog";
 import {LoginPageComponent} from "../../components/login-page/login-page.component";
+import {AuthService} from "../../services/authentification.service";
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,19 @@ import {LoginPageComponent} from "../../components/login-page/login-page.compone
 
 export class HeaderComponent implements OnInit{
 
-public login: string
+  public login: string
   public password: string
+  public Logout(){
+    this.auth.logout()
+    this.isLoggin = false
+  }
 
+  public isLoggin = this.auth.isAuthenticated()
 
   public headerItems: HeaderItem[];
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public auth: AuthService) {}
   public ngOnInit() {
-
-
 
 
     this.headerItems = [
@@ -53,6 +57,9 @@ public login: string
 
 
   }
+
+
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginPageComponent, {

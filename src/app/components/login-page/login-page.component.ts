@@ -24,7 +24,6 @@ constructor(
   onNoClick(): void {
     this.aSub = this.auth.login({username: this.data.login, password: this.data.password}).subscribe((data)=> {
       this.dialogRef.close()
-      this.router.navigate(['/workpage'])
   })
   }
 

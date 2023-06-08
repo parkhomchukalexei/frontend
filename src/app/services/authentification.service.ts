@@ -38,7 +38,7 @@ export class AuthService {
         (string) => {
           localStorage.setItem('access-token', string.access)
           localStorage.setItem('exp-date', new Date().toString())
-            // ne obnovlyaetsya token tut
+
         }
         )
       return localStorage.getItem('access-token')

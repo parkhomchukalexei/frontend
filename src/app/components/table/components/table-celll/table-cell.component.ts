@@ -1,12 +1,22 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ITableDay} from "../../table.component";
-import {FormControl} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 import {TableCellService} from "../../../../services/tabledata.service";
+import {state, style, trigger} from "@angular/animations";
+import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
+// import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-table-cell',
   templateUrl: './table-cell.component.html',
-  styleUrls: ['./table-cell.component.css']
+  styleUrls: ['./table-cell.component.css'],
+  // animations: [
+  //   trigger('cellChanged',[
+  //       state('default', style({background: 'white'})),
+  //       state('success',style({background: 'green'})),
+  //     ])
+  //   ]
+
 })
 export class TableCellComponent implements OnInit {
 
@@ -25,6 +35,8 @@ export class TableCellComponent implements OnInit {
 
   public showInput = false;
 
+  // public animationState = 'default'
+
   public onDoubleClick() {
     this.showInput = true;
   }
@@ -32,17 +44,20 @@ export class TableCellComponent implements OnInit {
   protected readonly document = document;
 
   public onEnter() {
-    //тут сделать проверку на велью и отправлять либо патч либо Пост
     if( this.cellData != undefined){
       this.service.patch_table_cell(this.cellData.id, this.formControl.value)
+      // this.animationState = 'success'
     }
     else{
-      this.service.create_new_table_cell(this.tableId, this.day, this.formControl.value)
+      let newCell  = this.service.create_new_table_cell(this.tableId, this.day, this.formControl.value)
+      console.log(this.formControl.value)
+      // this.animationState = 'success'
     }
-
+    this.cellData
     this.showInput = false;
+
     //тут как отобржатаь новую кнопку
-    this.cellData["data"] = this.formControl.value;
+    this.cellData["data"] = +this.formControl.value;
 
   }
 
@@ -50,7 +65,11 @@ export class TableCellComponent implements OnInit {
     this._initFormControl()
   }
 
+  public ngOnChanges(){
+    console.log('HUI')
+  }
+
   private _initFormControl() {
-    this.formControl = (this.isDefaultColumn) ? new FormControl : new FormControl<string>(this.cellData?.data.toString());
+    this.formControl = (this.isDefaultColumn) ? new FormControl : new FormControl<string>(this.cellData?.data.toString(), [Validators.required, Validators.pattern('^[0-9]*[.,]?[0-9]+$')]);
   }
 }

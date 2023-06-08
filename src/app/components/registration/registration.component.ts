@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, Valid
 import {RegistrationService} from "../../services/registration.service";
 import {Router} from "@angular/router";
 
-export interface IRegistrationForm {
+export interface IRegistrationForm  {
   first_name: FormControl<string>;
   last_name: FormControl<string>;
   email: FormControl<string>;
