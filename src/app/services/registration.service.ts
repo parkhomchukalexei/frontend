@@ -13,7 +13,7 @@ export class RegistrationService{
   }
 
   public register(data: IRegistrationForm): Observable<any>{
-    return this.http.post('http://127.0.0.1:8000/users/registration/register/', data)
+    return this.http.post('https://heavensite.herokuapp.com/users/registration/register/', data)
       .pipe(
         catchError(() => of(null))
       )

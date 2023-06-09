@@ -13,7 +13,7 @@ export class AuthService {
 
   public login(user: User): Observable<any> {
     this.logout()
-    return this.http.post<Token>('http://127.0.0.1:8000/api/token/', user)
+    return this.http.post<Token>('https://heavensite.herokuapp.com/api/token/', user)
       .pipe(
         tap(
           (token: Token) => {
@@ -34,7 +34,7 @@ export class AuthService {
     // @ts-ignore
     const expDate = new Date(localStorage.getItem('exp-date'))
     if (new Date() > expDate) {
-      let new_token = this.http.post<Token>('http://127.0.0.1:8000/api/token/refresh/', {refresh: localStorage.getItem('refresh-token')}).subscribe(
+      let new_token = this.http.post<Token>('https://heavensite.herokuapp.com/api/token/refresh/', {refresh: localStorage.getItem('refresh-token')}).subscribe(
         (string) => {
           localStorage.setItem('access-token', string.access)
           localStorage.setItem('exp-date', new Date().toString())
