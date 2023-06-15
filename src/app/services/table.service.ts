@@ -25,17 +25,17 @@ export class TableDataService {
 
   public get_table_data(month: number): Observable<OnlyFansTable[]> {
     const token = this.token.getAccessToken()
-    return this.http.get<OnlyFansTable[]>(`https://heavensite.herokuapp.com/onlyfans/table_view/?month=${month}`, {headers: {"Authorization": `Token ${token}`}})
+    return this.http.get<OnlyFansTable[]>(`http://127.0.0.1:8000/onlyfans/table_view/?month=${month}`, {headers: {"Authorization": `Token ${token}`}})
   }
 
   public createNewTable(data: ɵTypedOrUntyped<CreateOnlyfansTable, ɵFormGroupValue<CreateOnlyfansTable>, any>): Observable<OnlyFansTable> {
     const token = this.token.getAccessToken()
-    return this.http.post<OnlyFansTable>('https://heavensite.herokuapp.com/onlyfans/table_view/', data, {headers: {"Authorization": `Token ${token}`}})
+    return this.http.post<OnlyFansTable>('http://127.0.0.1:8000/onlyfans/table_view/', data, {headers: {"Authorization": `Token ${token}`}})
   }
 
   public getUserClientList(){
     const token = this.token.getAccessToken()
-    return this.http.get<Resp>('https://heavensite.herokuapp.com/users/userinfo',{headers: {"Authorization": `Token ${token}`}})
+    return this.http.get<Resp>('http://127.0.0.1:8000/users/userinfo',{headers: {"Authorization": `Token ${token}`}})
   }
 
 }

@@ -28,6 +28,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import { CreateTableComponent } from './components/create-table/create-table.component';
 import {MatSelectModule} from "@angular/material/select";
 import {TableDataService} from "./services/table.service";
+import { ClientListComponent } from './components/client-list/client-list.component';
 // import {AuthInterceptor} from "./shared/auth.interceptor";
 
 // const INTERCEPTOR_PROVIDER: Provider = {
@@ -46,6 +47,7 @@ import {TableDataService} from "./services/table.service";
     RegistrationComponent,
     MainComponent,
     CreateTableComponent,
+    ClientListComponent,
 
   ],
   imports: [

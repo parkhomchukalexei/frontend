@@ -12,7 +12,7 @@ export class TableCellService{
     const token = this.token.getAccessToken()
     console.log(id, data)
     return this.http.patch(
-      `https://heavensite.herokuapp.com/onlyfans/table_data/${id}/`, {data: data},{headers:{"Authorization":`Token ${token}`}}
+      `http://127.0.0.1:8000/onlyfans/table_data/${id}/`, {data: data},{headers:{"Authorization":`Token ${token}`}}
     )
       .subscribe((data) => console.log(data)
       )
@@ -23,7 +23,7 @@ export class TableCellService{
     const token = this.token.getAccessToken()
     const cellData = {data: data, tableId: tableID, date: day}
     return this.http.post(
-      `https://heavensite.herokuapp.com/onlyfans/table_data/`, cellData, {headers: {"Authorization":`Token ${token}`}}
+      `http://127.0.0.1:8000/onlyfans/table_data/`, cellData, {headers: {"Authorization":`Token ${token}`}}
     ).subscribe( (data) => data)
   }
 
