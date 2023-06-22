@@ -1,9 +1,8 @@
-import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
+import {Component,  Input, OnInit, } from '@angular/core';
 import {MatButtonToggleGroup} from '@angular/material/button-toggle';
 import {CellWithData, OnlyFansTable} from "../../shared/interfaces";
 import {defaultColumns} from './constants/default-columns.constant';
-import {map, Observable, tap} from "rxjs";
-import {DialogRef} from "@angular/cdk/dialog";
+import {finalize, Observable} from "rxjs";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateTableComponent} from "../create-table/create-table.component";
 
@@ -64,20 +63,10 @@ export class TableComponent implements OnInit {
   }
 
   add_table() {
-  const dialog = this.dialog.open(CreateTableComponent)
-    // data: {month: this.month, tableType: , client: this.Client,
-    //     operator: this.operator}})
-
-    // dialog.afterClosed().subscribe(
-    //   result => {
-    //     console.log('hui')
-
-        // this.createNewTableService.createNewTable({month: result.month, tableType: result.TableType, client: result.Client,
-        // operator: result.operator})
-        // console.log(result)
-      // }
-    // )
-
+  this.dialog.open(CreateTableComponent).afterClosed()
+    .pipe(
+      finalize(() => console.log('completed'))
+    )
   }
 
   public getColumnHeader(columnName: string): string {
@@ -86,23 +75,23 @@ export class TableComponent implements OnInit {
 
   public getTotalCost(columnName: keyof OnlyFansTable)  {
 
-    if (this.defaultColumns.includes(columnName as string)) {
-      return "";
-    }
-    else{
+    if (!this.defaultColumns.includes(columnName as string) ) {
       let counter = 0;
-      let TableCounter = 0;
       (this.dataSource || []).forEach((dataSourceItem: OnlyFansTable) => {
         counter += (dataSourceItem[columnName] as unknown as CellWithData)?.data || 0;
       })
         return counter;
-      // return this.dataSource$.forEach(data  => data[columnName]?.data).filter((x) => x > 0).reduce((acc, value) => acc + value, 0)
     }
-  }
-
-  public getTableCost(){
-    let columnName = 1
+    if (columnName as string == "Sum"){
       let counter = 0;
+      (this.dataSource || []).forEach((dataSourceItem: OnlyFansTable) => {
+        counter += (dataSourceItem['Sum'] as number) || 0;
+      })
+        return counter;
+    }
+    else{
+      return "";
+    }
   }
 
   public isDefaultColumn(columnName: string): boolean {

@@ -87,6 +87,7 @@ export class MainComponent implements OnInit{
   public ngOnInit() {
     this._initDataSource();
     this._initTabs();
+    this._initColumns()
 
   }
 

@@ -5,8 +5,6 @@ export interface User {
   password: string
 }
 
-
-
 export interface OnlyFansTable extends TableDataCells{
   id: number;
   clientSurname: string;
@@ -56,7 +54,36 @@ export interface ClientData{
 
 
 export interface Resp {
-  client: {};
   operator: {}
+  client: {}
+}
 
+export interface shortClientList{
+  full_name: string;
+  id: number;
+  photo: string;
+}
+
+export interface ClientList{
+  client: shortClientList[]
+}
+
+export interface ClientProfile{
+    "id": number;
+    "full_name": string;
+    "name": string;
+    "surname": string,
+    "country": string | null,
+    "login_of": string | null,
+    "password_of": string | null,
+    "of_email": string | null,
+    "of_password_email": string | null,
+    "paid_account": boolean,
+    "login_of_paid_account": string | null,
+    "password_of_paid_account": string | null,
+    "email_of_paid_account": string | null,
+    "password_of_email_paid_account": string | null,
+    "photo": string | null,
+    "telegram_photos_link": string | null,
+    "managers": []
 }

@@ -29,6 +29,10 @@ import { CreateTableComponent } from './components/create-table/create-table.com
 import {MatSelectModule} from "@angular/material/select";
 import {TableDataService} from "./services/table.service";
 import { ClientListComponent } from './components/client-list/client-list.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatChipsModule} from "@angular/material/chips";
+import {ClientService} from "./services/client.service";
+import { ClientProfileComponent } from './components/client-profile/client-profile.component';
 // import {AuthInterceptor} from "./shared/auth.interceptor";
 
 // const INTERCEPTOR_PROVIDER: Provider = {
@@ -48,7 +52,7 @@ import { ClientListComponent } from './components/client-list/client-list.compon
     MainComponent,
     CreateTableComponent,
     ClientListComponent,
-
+    ClientProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,13 +71,16 @@ import { ClientListComponent } from './components/client-list/client-list.compon
     MatTabsModule,
     MatExpansionModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatGridListModule,
+    MatChipsModule,
   ],
   providers: [
     AuthService,
     TableDataService,
     RegistrationService,
     TableCellService,
+    ClientService,
   ],
   bootstrap: [AppComponent]
 })

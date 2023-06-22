@@ -8,7 +8,7 @@
     <mat-label>Выберите Клиентку</mat-label>
     <mat-select formControlName="client">
       <ng-container *ngFor="let row of client">
-    <mat-option  value="{{row.id | number}}">{{row.full_name}}</mat-option>
+    <mat-option  value="{{row.id | number}}"> {{row.full_name}}</mat-option>
       </ng-container>
     </mat-select>
     </mat-form-field>
@@ -22,7 +22,7 @@
   </mat-form-field>
   <mat-form-field formControlName="tableType">
     <mat-label>Table Type</mat-label>
-    <mat-select formControlName="client">
+    <mat-select formControlName="tableType">
     <mat-option value="true" >OP</mat-option>
     <mat-option value="false">FP + PP</mat-option>
     </mat-select>
