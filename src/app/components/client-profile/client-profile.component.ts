@@ -1,8 +1,8 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import {ClientService} from "../../services/client.service";
 import {ClientProfile} from "../../shared/interfaces";
 import {ClientListComponent} from "../client-list/client-list.component";
-import {MatDialogRef} from "@angular/material/dialog";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -13,16 +13,15 @@ import {Subscription} from "rxjs";
 export class ClientProfileComponent implements OnInit {
 
   public clientData: ClientProfile;
-  private aSub: Subscription;
-  constructor(private service: ClientService, public dialogRef: MatDialogRef<ClientProfileComponent>)
-              // @Inject(ClientListComponent) public id: number)
+
+  constructor(private service: ClientService,
+              @Inject(MAT_DIALOG_DATA) public data: any)
               {
 
   }
 
   ngOnInit(): void {
-    this._getProfileData(2)
-    console.log(this.clientData)
+    this._getProfileData(this.data.id)
   }
 
   private _getProfileData(id: number){

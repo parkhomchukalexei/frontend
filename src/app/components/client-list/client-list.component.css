@@ -1,0 +1,5 @@
+.mat-mdc-tab .mdc-tab__content {
+    position: relative;
+    pointer-events: auto;
+    background: black;
+}

@@ -11,11 +11,12 @@ import {AuthService} from "../../services/authentification.service";
 })
 
 
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   public login: string
   public password: string
-  public Logout(){
+
+  public Logout() {
     this.auth.logout()
     this.isLoggin = false
   }
@@ -24,7 +25,9 @@ export class HeaderComponent implements OnInit{
 
   public headerItems: HeaderItem[];
 
-  constructor(public dialog: MatDialog, public auth: AuthService) {}
+  constructor(public dialog: MatDialog, public auth: AuthService) {
+  }
+
   public ngOnInit() {
 
 
@@ -46,7 +49,7 @@ export class HeaderComponent implements OnInit{
         href: "/anastasia_dating",
         isVisible: true,
 
-      },{
+      }, {
         title: "Hui",
         href: "/hui",
         isVisible: false,
@@ -55,10 +58,7 @@ export class HeaderComponent implements OnInit{
     ]
 
 
-
   }
-
-
 
 
   openDialog(): void {

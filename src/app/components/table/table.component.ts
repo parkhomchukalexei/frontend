@@ -75,12 +75,12 @@ export class TableComponent implements OnInit {
 
   public getTotalCost(columnName: keyof OnlyFansTable)  {
 
-    if (!this.defaultColumns.includes(columnName as string) ) {
+    if (!this.defaultColumns.includes(columnName as string)) {
       let counter = 0;
       (this.dataSource || []).forEach((dataSourceItem: OnlyFansTable) => {
         counter += (dataSourceItem[columnName] as unknown as CellWithData)?.data || 0;
       })
-        return counter;
+      return +parseFloat(counter.toString()).toFixed(2);
     }
     if (columnName as string == "Sum"){
       let counter = 0;

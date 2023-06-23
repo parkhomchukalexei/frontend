@@ -59,10 +59,9 @@ export class CreateTableComponent implements OnInit {
 
   onNoClick() {
     console.log(this.createTableForm.value.client)
-    // @ts-ignore
     let data = this.createTableForm.value
     return this.service.createNewTable(data).subscribe(
-      data => console.log('otpiska')
-    ).unsubscribe()
+      (data) => this.dialogRef.close()
+    )
       }
 }

@@ -25,9 +25,9 @@ export class ClientListComponent implements OnInit {
     this.service.getClientList().subscribe(data => this.clientList = data)
   }
 
-  public openProfile(id:number){
-    this.id = id
-    this.clientProfile.open(ClientProfileComponent)
+  public openProfile(id: number) {
+    this.clientProfile.open(ClientProfileComponent, {
+      data: {id: id.toString() }})
   }
 
 }
