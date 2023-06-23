@@ -12,7 +12,7 @@ export class ClientService{
 
   public getClientList(): Observable<shortClientList[]>{
     const token = this.token.getAccessToken()
-    return this.http.get<shortClientList[]>('https://heavensite.herokuapp.com/users/client_list', {headers: {"Authorization": `Token ${token}`}})
+    return this.http.get<shortClientList[]>('https://heavensite.herokuapp.com/users/client_list/', {headers: {"Authorization": `Token ${token}`}})
   }
 
   public getClientProfile(id: number): Observable<ClientProfile>{
